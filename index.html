@@ -3,35 +3,44 @@
   <head>
     <title>Gmail API Quickstart</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
 
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- Textfont starts -->
+ <link rel="stylesheet" href="styles2.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 <!-- Textfont Ends -->
 
 <script src="https://apis.google.com/js/api.js"></script>
-<script src="script.js"></script>
+<script src="app.js"></script>
   </head>
   <body>
  
 
 <!-- =========================Body content============ -->
-<div id="sectionOne">
+<div class="container">
+<div class="sectionOne">
     <div>
-      <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r2.png" alt="Gmail Icon"/>
+      <img src="https://1000logos.net/wp-content/uploads/2021/05/Gmail-logo.png" alt="Gmail Icon" class="gmaillogo"/>
     </div> 
   
     <div>
-      <button onclick="authenticate().then(loadClient)" class="signin">Sign In</button> 
+      <button onclick="authenticate().then(loadClient)" class="signin button signbtn"><span>Sign In</span></button> 
     </div>
- </div>          
+    </div>
 
-<div id="Message">
+ </div>          
+</div>
+
+
+  
+
+<!-- <div id="Message">
   
   <ul>
     <li>
@@ -47,10 +56,10 @@
           
         </li>
     <li>
-      <button class="socialBtn" onclick ="getThreadmsg()" id="button">
+      <button class="socialBtn" onclick ="execute()" id="button">
         <i class="material-icons" id="sectionTwoicon">send</i> 
             <div>
-                Sent Email
+                Full Message
             </div>
                 
             </button>
@@ -83,15 +92,18 @@
         <button id="sendBtn">send</button>
 
        </div>
-        
+         -->
 
 
 
 <!-- ========================Body content ends============== -->
 <!-- ======================== -->
-
-
+<!-- <script src="data.js"></script>
+<button onclick="authenticate().then(loadClient)">authorize and load</button>
+<button onclick="execute()">execute</button> -->
     <!-- ==================== -->
+
+    <script src="https://apis.google.com/js/api.js"></script>
 
   </body>
 </html>
