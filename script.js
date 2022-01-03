@@ -81,33 +81,7 @@
 
 //======Send Mail=========
 
-//var draftsans = [];
-function listOfdrafts() {
-    return gapi.client.gmail.users.drafts.list({"userId": "me" })
-    .then(function(response) {
-        const drafts = response.result.drafts;
-        drafts.forEach(element => {
-        const msgid = element.message.threadId;   
-        return gapi.client.gmail.users.messages.get({
-                "userId": "me",
-                "id": msgid
-              })
-                  .then(function(response) {
-                          // Handle the results here (response.result has the parsed body).
-                           console.log(response.result)
-//                           headersarr.forEach((e)=>(
-//                              console.log(e),  
-                           
-//                              draftsans.push(e['value']) 
-                              
-//                               ))
-// console.log(draftsans)
-                        },
-                        function(err) { console.error("Execute error", err); });
-                  }
-             
-            //console.log(msgid)
-        )})};
+
 
         
 //=========Send mail end============
@@ -115,4 +89,3 @@ function listOfdrafts() {
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "68402850544-44tf25t6o3lb1k3ilk3qb0kvkb9vhnt9.apps.googleusercontent.com"});
   });
-
