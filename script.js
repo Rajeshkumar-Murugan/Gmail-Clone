@@ -4,12 +4,12 @@
    * See instructions for running APIs Explorer code samples locally:
    * https://developers.google.com/explorer-help/guides/code_samples#javascript
    * 
-   * 
+   * https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.readonly 
    */
 
   function authenticate() {
     return gapi.auth2.getAuthInstance()
-        .signIn({scope: "https://mail.google.com/ https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.metadata"})
+        .signIn({scope: "https://mail.google.com/ https://www.googleapis.com/auth/gmail.compose"})
         .then(function() { 
             console.log("Sign-in successful"); 
 
@@ -101,7 +101,7 @@
 
           <div class="Menu-container">
             <ul>
-              <li><a class="active icons" href="#Income" onclick="inbox_fun()">
+              <li><a class="active icons" href="#Income" onclick="Primary()">
               <span class="material-icons">
               inbox
               </span>Inbox</a></li>
@@ -158,26 +158,28 @@ async function Primary() {
           })
               .then(function(response) {
                       // Handle the results here (response.result has the parsed body).
-                      console.log("Response", response);
-                      
+                      //console.log("Response", response);
+                     //console.log(response.result.labelIds.filter((el)=> el == "INBOX").toString())
+                      if(response.result.labelIds.filter((el)=> el == "INBOX").toString()== "INBOX" )
+                       {                     
                       var sub = response.result.payload.headers.filter((el)=> el.name == "Subject").map(e=>e.value)
                       var from = response.result.payload.headers.filter((el)=> el.name == "From").map(e=>e.value)
-                       var date = response.headers.date
-                    
-                       
-                       
-                      
-
-
-                      //console.log(n)
+                      var msgda = response.result.payload.headers.filter((el)=> el.name == "Date").map(e=>e.value)
+                      console.log(response.result.payload.headers)
+                      const msg_date = new Date(msgda);
+                      const date = msg_date.getDate()-1;
+                      const month = Number(msg_date.getMonth())+1;
+                      const year = Number(msg_date.getFullYear())-1;                                            
                       
                       primaryMsg.innerHTML += `
-                      <tr> 
+                      <tr class="message-row"> 
                       <td class="message-from">${from}</td>
                       <td class="message-sub">${sub}</td>
-                      <td class="message-date">${date}</td>
+                      <td class="message-date">${date+"/"+ month+"/"+year}</td>
                       </tr>
                       `
+                    }
+                      
 
                     },
                     function(err) { console.error("Execute error", err); });
